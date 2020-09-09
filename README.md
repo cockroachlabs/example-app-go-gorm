@@ -10,4 +10,8 @@ To run the code:
 
 3. From the [SQL client](https://www.cockroachlabs.com/docs/stable/cockroach-sql.html): `GRANT ALL ON DATABASE bank TO maxroach`
 
-4. In your terminal, from this directory: `go run main.go`
+4. In your terminal, from this directory:
+   
+   `$ go mod init hello-world-go-gorm`
+
+   `$ go run main.go`
