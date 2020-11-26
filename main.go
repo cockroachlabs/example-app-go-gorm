@@ -85,8 +85,8 @@ func main() {
 	// in `crdbgorm.ExecuteTx`, a helper function for GORM which
 	// implements a retry loop
 	if err := crdbgorm.ExecuteTx(context.Background(), db, nil,
-		func(*gorm.DB) error {
-			return transferFunds(db, fromID, toID, amount)
+		func(tx *gorm.DB) error {
+			return transferFunds(tx, fromID, toID, amount)
 		},
 	); err != nil {
 		// For information and reference documentation, see:
