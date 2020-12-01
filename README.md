@@ -4,14 +4,12 @@ This repo has a "Hello World" Go application that uses the [GORM](http://gorm.io
 
 To run the code:
 
-1. Start a [local, insecure CockroachDB cluster](https://www.cockroachlabs.com/docs/stable/start-a-local-cluster.html).
+1. Start a [demo CockroachDB cluster](https://www.cockroachlabs.com/docs/stable/cockroach-demo.html) from the command line: `cockroach demo --empty`
 
-2. Create a `bank` database and `maxroach` user as described in [Build a Go app with CockroachDB and GORM](https://www.cockroachlabs.com/docs/stable/build-a-go-app-with-cockroachdb-gorm.html#insecure).
+1. Create a `bank` database and a user and password as described in [Build a Go app with CockroachDB](https://www.cockroachlabs.com/docs/stable/build-a-go-app-with-cockroachdb-gorm.html).
 
-3. From the [SQL client](https://www.cockroachlabs.com/docs/stable/cockroach-sql.html): `GRANT ALL ON DATABASE bank TO maxroach`
+1. From the SQL client: `GRANT ALL ON DATABASE bank TO user`
 
-4. In your terminal, from this directory:
-   
-   `$ go mod init hello-world-go-gorm`
+2. Update the const `addr` with the correct connection values.
 
-   `$ go run main.go`
+3. In your terminal, from this directory: `go mod init basic-sample && go run main.go`
