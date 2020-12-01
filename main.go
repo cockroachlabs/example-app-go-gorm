@@ -48,7 +48,7 @@ func transferFunds(db *gorm.DB, fromID int, toID int, amount int) error {
 
 func main() {
 	// Connect to the "bank" database as the "maxroach" user.
-	const addr = "postgresql://maxroach@localhost:26257/bank?sslmode=disable"
+	const addr = "postgres://{username}:{password}@{hostname}:{port}/bank?sslmode=require"
 	db, err := gorm.Open("postgres", addr)
 	if err != nil {
 		log.Fatal(err)
