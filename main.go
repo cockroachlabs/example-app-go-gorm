@@ -29,7 +29,7 @@ var acctIDs []uuid.UUID
 // This function generates new UUIDs and random balances for each row, and
 // then it appends the ID to the `acctIDs`, which other functions use to track the IDs
 func addAccounts(db *gorm.DB, numRows int, transferAmount int) error {
-	log.Printf("Creating %d new rows...", numRows)
+	log.Printf("Creating %d new accounts...", numRows)
 	for i := 0; i < numRows; i++ {
 		newID := uuid.New()
 		newBalance := rand.Intn(10000) + transferAmount
@@ -38,6 +38,7 @@ func addAccounts(db *gorm.DB, numRows int, transferAmount int) error {
 		}
 		acctIDs = append(acctIDs, newID)
 	}
+	log.Println("Accounts created.")
 	return nil
 }
 
@@ -45,6 +46,7 @@ func addAccounts(db *gorm.DB, numRows int, transferAmount int) error {
 // This function adds `amount` to the "balance" column of the row with the "id" column matching `toID`,
 // and removes `amount` from the "balance" column of the row with the "id" column matching `fromID`
 func transferFunds(db *gorm.DB, fromID uuid.UUID, toID uuid.UUID, amount int) error {
+	log.Printf("Transferring %d from account %s to account %s...", amount, fromID, toID)
 	var fromAccount Account
 	var toAccount Account
 
@@ -64,6 +66,7 @@ func transferFunds(db *gorm.DB, fromID uuid.UUID, toID uuid.UUID, amount int) er
 	if err := db.Save(&toAccount).Error; err != nil {
 		return err
 	}
+	log.Println("Funds transferred.")
 	return nil
 }
 
@@ -79,10 +82,12 @@ func printBalances(db *gorm.DB) {
 
 // Delete all rows in "accounts" table inserted by `main` (i.e., tracked by `acctIDs`)
 func deleteAccounts(db *gorm.DB, accountIDs []uuid.UUID) error {
+	log.Println("Deleting accounts created...")
 	err := db.Where("id IN ?", accountIDs).Delete(Account{}).Error
 	if err != nil {
 		return err
 	}
+	log.Println("Accounts deleted.")
 	return nil
 }
 
