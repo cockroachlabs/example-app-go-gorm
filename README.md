@@ -1,15 +1,4 @@
-# hello-world-go-gorm
+This repo contains the source code for a simple CRUD application, written in Go. The application uses [GORM](https://gorm.io/) to connect to and communicate with an existing [CockroachDB](https://www.cockroachlabs.com/docs/stable/) cluster.
 
-This repo has a "Hello World" Go application that uses the [GORM](http://gorm.io) ORM to talk to [CockroachDB](https://www.cockroachlabs.com/docs/stable/).
+For instructions on starting CockroachDB and running the code, see [this tutorial](https://www.cockroachlabs.com/docs/stable/build-a-go-app-with-cockroachdb-gorm.html).
 
-To run the code:
-
-1. Start a [demo CockroachDB cluster](https://www.cockroachlabs.com/docs/stable/cockroach-demo.html) from the command line: `cockroach demo --empty`
-
-1. Create a `bank` database and a user and password as described in [Build a Go app with CockroachDB](https://www.cockroachlabs.com/docs/stable/build-a-go-app-with-cockroachdb-gorm.html).
-
-1. From the SQL client: `GRANT ALL ON DATABASE bank TO user`
-
-2. Update the const `addr` with the correct connection values.
-
-3. In your terminal, from this directory: `go mod init basic-sample && go run main.go`
